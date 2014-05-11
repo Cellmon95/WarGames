@@ -13,16 +13,23 @@ namespace WarGames.objects.data
 		Random rand;
 		public Map(Vector2i mapSize)
 		{
+            //need to make the map one unit bigger for the void frame
+            mapSize.X++;
+            mapSize.Y++;
 			Size = new Vector2f(mapSize.X * 32, mapSize.Y * 32);
-			Position = new Vector2f(0, 0);
+			Position = new Vector2f(-32, -32);
 
-			tiles = new Tile[mapSize.X, mapSize.Y];
+			tiles = new Tile[mapSize.X + 2, mapSize.Y + 2];
 			rand = new Random();
 
 			randomiseMap();
 			setTileChildren();
 		}
 
+        /// <summary>
+        /// Sets the children to every tile. The tile children is the tiles that
+        /// surrounds the target tile.  
+        /// </summary>
 		private void setTileChildren()
 		{
 			for (int x = 1; x < tiles.GetLength(0) - 1; x++)
@@ -49,6 +56,9 @@ namespace WarGames.objects.data
 			}
 		}
 
+        /// <summary>
+        /// Makes the map random.
+        /// </summary>
 		private void randomiseMap()
 		{
 			int tmpNum = 0;
@@ -58,12 +68,12 @@ namespace WarGames.objects.data
 				{
 					if (x == 0 || x == tiles.GetLength(0) - 1)
 					{
-						tiles[x, y] = new Tile(Tile.TileType.VOID);
+                        tiles[x, y] = null;
 					}
 
 					else if (y == 0 || y == tiles.GetLength(1) - 1)
 					{
-						tiles[x, y] = new Tile(Tile.TileType.VOID);
+                        tiles[x, y] = null;
 					}
 
 					else
@@ -74,29 +84,36 @@ namespace WarGames.objects.data
 							tiles[x, y] = new Tile(Tile.TileType.GRASS);
 						else if (tmpNum >= 80 && tmpNum <= 100)
 							tiles[x, y] = new Tile(Tile.TileType.DIRT);
+                        //set the position
+                        tiles[x, y].Position = new SFML.Window.Vector2f(x * 32 + Position.X, y * 32 + Position.Y);
 					}
-					tiles[x, y].Position = new SFML.Window.Vector2f(x * 32 + Position.X, y * 32 + Position.Y);
 				}
 			}
 		}
 
-		public Vector2f Size { get; set; }
+		public Vector2f Size { get; private set; }
 
-		public Vector2f Position { get; set; }
+		public Vector2f Position { get; private set; }
 
 		internal Tile getTileByPosition(Vector2f position)
 		{
-			return tiles[(int)position.X / 32, (int)position.Y / 32];
+			return tiles[(int)((position.X - Position.X) / 32), (int)((position.Y - Position.Y)/ 32)];
 		}
 
+        /// <summary>
+        /// Resets the tiles parents and GF values.
+        /// </summary>
 		internal void resetTiles()
 		{
 			for (int x = 0; x < tiles.GetLength(0); x++)
 			{
 				for (int y = 0; y < tiles.GetLength(1); y++)
 				{
-					tiles[x, y].resetGFValue();
-					tiles[x, y].Parent = null;
+					if(tiles[x, y] != null)
+					{
+						tiles[x, y].resetGFValue();
+						tiles[x, y].Parent = null;
+					}
 				}
 			}
 		}

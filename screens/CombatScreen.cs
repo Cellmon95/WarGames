@@ -29,9 +29,6 @@ namespace WarGames.screens
 			interfaceHandler = new InterfaceHandler(this);
 			masterRenderer = new MasterRenderer(dataMaster);
 
-			//what?
-			InterfaceBar = dataMaster.InterfaceBar;
-
 		}
 
 		public void update()
@@ -54,7 +51,6 @@ namespace WarGames.screens
 
 		public DataMaster DataMaster { get; private set; }
 		public InterfaceBar InterfaceBar { get; private set; }
-
 		public UnitHandler UnitHandler { get { return unitHandler; } set { unitHandler = value; } }
 	}
 }

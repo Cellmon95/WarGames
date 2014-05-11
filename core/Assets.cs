@@ -5,18 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Resources;
-
+using System.IO;
 namespace WarGames.core
 {
 	class Assets
 	{
 
-
+		
 		public static void load()
 		{	
-			InfantryText = new Texture("C:\\Users\\Fredrik\\Documents\\GitHub\\GymnasieArbete\\WarGames\\WarGames\\Infantry.jpg");
-			ShermanTankText = new Texture("C:\\Users\\Fredrik\\Documents\\GitHub\\GymnasieArbete\\WarGames\\WarGames\\Tank_Sherman.jpg");
-			ArialFont = new Font("C:\\Users\\Fredrik\\Documents\\GitHub\\GymnasieArbete\\WarGames\\WarGames\\arial.ttf");
+			InfantryText = new Texture("resources\\Infantry.jpg");
+			ShermanTankText = new Texture("resources\\Tank_Sherman.jpg");
+			ArialFont = new Font("resources\\fonts\\arial.ttf");
 			
 		}
 
