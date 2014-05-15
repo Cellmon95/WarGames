@@ -99,9 +99,9 @@ namespace WarGames.handlers
 
 		private void moveSelectedUnit()
 		{
-			if (Input.hoverAtPosition())
+			/*if (Input.hoverAtPosition())
 			{
-			}
+			}*/
 
 			if (Input.checkIfPressed(screen.DataMaster.map.Position, screen.DataMaster.map.Size))
 			{

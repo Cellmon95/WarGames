@@ -13,11 +13,11 @@ namespace WarGames.core
 
 
 		public static void load()
-		{	
-			InfantryText = new Texture("C:\\Users\\Fredrik\\Documents\\GitHub\\GymnasieArbete\\WarGames\\WarGames\\Infantry.jpg");
-			ShermanTankText = new Texture("C:\\Users\\Fredrik\\Documents\\GitHub\\GymnasieArbete\\WarGames\\WarGames\\Tank_Sherman.jpg");
-			ArialFont = new Font("C:\\Users\\Fredrik\\Documents\\GitHub\\GymnasieArbete\\WarGames\\WarGames\\arial.ttf");
-			
+		{
+			/*InfantryText = new Texture("C:\\Users\\Fredrik\\Documents\\GitHub\\GymnasieArbete\\WarGames\\WarGames\\Infantry.jpg");
+			*/ShermanTankText = new Texture("Tank_Sherman.jpg");/*
+			ArialFont = new Font("C:\\Users\\Fredrik\\Documents\\GitHub\\GymnasieArbete\\WarGames\\WarGames\\arial.ttf");*/
+
 		}
 
 		public static Font ArialFont { get; private set; }

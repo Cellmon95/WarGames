@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using SFML.Graphics;
 using WarGames.objects.data;
 using WarGames.objects.data.units;
-using WarGames.objects.data.units;
 
 namespace WarGames.objects.data
 {
