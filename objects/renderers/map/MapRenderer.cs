@@ -17,7 +17,7 @@ namespace WarGames.objects.data
 		public MapRenderer(Map data)
 		{
 			this.data = data;
-			tilesRenderers = new TileRenderer[data.tiles.GetLength(0), data.tiles.GetLength(1)];
+			tilesRenderers = new TileRenderer[data.tiles.GetLength(0) - 1, data.tiles.GetLength(1) - 1];
 			createTileRenderers();
 		}
 
@@ -27,7 +27,8 @@ namespace WarGames.objects.data
 			{
 				for (int y = 0; y < data.tiles.GetLength(1); y++)
 				{
-					tilesRenderers[x,y] = new TileRenderer(data.tiles[x, y]);
+					if (data.tiles[x, y] != null)
+						tilesRenderers[x, y] = new TileRenderer(data.tiles[x, y]);
 				}
 			}
 		}
@@ -38,7 +39,8 @@ namespace WarGames.objects.data
 			{
 				for (int y = 0; y < tilesRenderers.GetLength(1); y++)
 				{
-					target.Draw(tilesRenderers[x, y]);
+					if (tilesRenderers[x, y] != null)
+						target.Draw(tilesRenderers[x, y]);
 				}
 			}
 		}

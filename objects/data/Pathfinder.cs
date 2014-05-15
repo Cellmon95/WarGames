@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SFML.Window;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,27 @@ namespace WarGames.objects.data
 			this.map = map;
 			openList = new List<Tile>();
 			closeList = new List<Tile>();
+		}
+
+		/// <summary>
+		/// Calculates a straigt path betwen two points. The path is estimated cause sometimes there
+		/// are no straigt path. 
+		/// </summary>
+		private int calculateStraightPath(Vector2i start, Vector2i target)
+		{
+			//if the target is att the same row. The just calculate it manhattan style
+			if (start.X == target.X || start.Y == target.Y)
+			{
+				return Math.Abs(start.X - target.X) + Math.Abs(start.Y - target.Y);
+			}
+			
+			//otherwise you calculate it manhattan style but split it in half. 
+			//in this way you get estimated straigt path cost.
+			else
+			{
+				return (Math.Abs(start.X - target.X) + Math.Abs(start.Y - target.Y)) / 2;
+			}
+			
 		}
 
 		public int calculateSmallestPath(Tile start, Tile target)
@@ -138,7 +160,9 @@ namespace WarGames.objects.data
 
 			return count;
 		}
-
+		/// <summary>
+		/// Resets everything.
+		/// </summary>
 		private void reset()
 		{
 			map.resetTiles();

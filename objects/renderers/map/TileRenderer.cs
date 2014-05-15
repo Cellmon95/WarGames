@@ -14,7 +14,7 @@ namespace WarGames.objects.data
 		private RectangleShape rectangleShape;
 		public TileRenderer(Tile data)
 		{
-			this.data = data;
+            this.data = data;
 			rectangleShape = new RectangleShape();
 			rectangleShape.Size = this.data.Size;
 			rectangleShape.FillColor = data.FillColor;

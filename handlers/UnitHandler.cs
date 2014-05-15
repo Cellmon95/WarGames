@@ -52,7 +52,7 @@ namespace WarGames.handlers
 			pathfinder = new Pathfinder(screen.DataMaster.map);
 
 			//Fill units with infantery.
-			//TODO:: make this better by able it to be filed with other units to
+			//TODO:: make this better.
 			for (int i = 0; i < units.Length; i++)
 			{
 				units[i] = new Infantery();
@@ -113,14 +113,20 @@ namespace WarGames.handlers
 				{
 					//subtrakt move points from the ap value
 					selectedUnit.Stats.APValue -= smallesPath;
-					Console.WriteLine(selectedUnit.Stats.APValue);
+					//Console.WriteLine(selectedUnit.Stats.APValue);
 					
 					//move the unit
 					selectedUnit.Position = new Vector2f(
 						(float)((int)Input.ClickedPos.X / 32) * 32,
 						(float)((int)Input.ClickedPos.Y / 32) * 32);
+					Console.WriteLine("You steped {0} steps", smallesPath);
 				}
 			}
+		}
+
+		private void shootAtTarget()
+		{
+			
 		}
 
 		/// <summary>
